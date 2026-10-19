@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ChildNutri AI — Pediatric Malnutrition Screening</title>
+  <meta name="description" content="AI-powered pediatric nutrition screening using WHO growth standards, future-risk prediction, and personalised diet plans.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="/index.html"><span class="brand-mark">CN</span> ChildNutri AI</a>
+  <div class="nav-links">
+    <a href="/resources.html" data-i18n="resources">Resources</a>
+    <a href="/photo-scan.html">Photo AI</a>
+    <a href="/model-card.html" data-i18n="model_card">Model card</a>
+    <a href="/login.html" data-i18n="sign_in">Log in</a>
+    <button id="lang-toggle" onclick="toggleLanguage()" style="background:transparent;border:1.5px solid #00d4aa;color:#00d4aa;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;font-weight:600;margin-left:12px;transition:all 0.2s;" onmouseover="this.style.background='#00d4aa';this.style.color='#0d2818';" onmouseout="this.style.background='transparent';this.style.color='#00d4aa';">हिंदी</button>
+    <a class="btn primary" href="/signup.html" data-i18n="new_screening">Start screening</a>
+  </div>
+</nav>
+
+<div class="app-shell">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text fade-up">
+      <div class="badge info mb" style="width:fit-content"><span class="badge-dot"></span> WHO 2006 Standards</div>
+      <h1>Child nutrition<br><span class="gradient-text">AI screening</span><br>for under‑5s</h1>
+      <p class="lede">Combines WHO growth z-scores, a LightGBM future-risk model, and age-specific care plans to support doctors, Anganwadi workers, and parents.</p>
+      <div class="hero-cta">
+        <a class="btn primary lg" href="/signup.html">Create free account</a>
+        <a class="btn lg" href="/login.html">Sign in</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up-2">
+      <div class="hero-card glass">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-card-inner">
+          <div class="orb-wrap" style="padding-top:32px">
+            <div class="orb status-healthy float-anim">
+              <div class="orb-inner"></div>
+              <span class="orb-label">Healthy</span>
+            </div>
+          </div>
+          <div style="margin-top:56px">
+            <p class="muted" style="font-size:13px;line-height:1.6">Assessment result</p>
+            <h3 style="margin-top:4px">Normal nutritional status</h3>
+            <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
+              <span class="badge healthy">WAZ +0.3</span>
+              <span class="badge healthy">HAZ -0.1</span>
+              <span class="badge healthy">WHZ +0.2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="center mb-lg">
+      <h2>Everything in one flow</h2>
+      <p class="muted mt-sm">7-step wizard → results in seconds</p>
+    </div>
+    <div class="grid-3">
+      <div class="card fade-up-1">
+        <div class="feature-icon">📏</div>
+        <h3>WHO z-scores</h3>
+        <p class="muted mt-sm">WAZ, HAZ, WHZ, BAZ computed with official LMS tables. SAM/MAM/stunting/underweight/overweight classification by CMAM cut-offs.</p>
+      </div>
+      <div class="card fade-up-2">
+        <div class="feature-icon">🔮</div>
+        <h3>Future-risk tier</h3>
+        <p class="muted mt-sm">LightGBM context model (ROC-AUC 0.87) + trend analysis + closeness-to-cut-off scoring produces a transparent LOW / WATCH / HIGH tier.</p>
+      </div>
+      <div class="card fade-up-3">
+        <div class="feature-icon">🍛</div>
+        <h3>Care & diet plan</h3>
+        <p class="muted mt-sm">Age-band and preference-aware diet recommendations, red-flag alerts, follow-up timing, and government scheme guidance.</p>
+      </div>
+      <div class="card fade-up-1">
+        <div class="feature-icon">📄</div>
+        <h3>OCR report scan</h3>
+        <p class="muted mt-sm">Upload a health card photo. Tesseract + OpenCV extract weight, height, age, and MUAC for review before use.</p>
+      </div>
+      <div class="card fade-up-2">
+        <div class="feature-icon">📸</div>
+        <h3>Deep Learning Photo AI</h3>
+        <p class="muted mt-sm">Upload infant photo. Computer vision extracts anatomical wasting features (ribs, facial hollows, limbs) with Grad-CAM heatmaps for SAM/MAM screening.</p>
+      </div>
+      <div class="card fade-up-2">
+        <div class="feature-icon">📊</div>
+        <h3>Growth history</h3>
+        <p class="muted mt-sm">Track z-score trends across visits. Charts show WAZ and HAZ trajectories vs. WHO reference bands.</p>
+      </div>
+      <div class="card fade-up-3">
+        <div class="feature-icon">📥</div>
+        <h3>PDF reports</h3>
+        <p class="muted mt-sm">One-click download of a clinical-grade summary PDF for patient records, referrals, or parent sharing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section class="section-sm">
+    <div class="glass panel" style="background:linear-gradient(135deg,rgba(52,211,153,0.06),rgba(34,211,238,0.04));border-color:rgba(52,211,153,0.2);">
+      <div class="stats-row">
+        <div class="stat-card" style="background:transparent;border:none;">
+          <div class="stat-label">Model accuracy</div>
+          <div class="stat-value">0.87</div>
+          <div class="stat-sub">ROC-AUC (stunting risk)</div>
+        </div>
+        <div class="stat-card" style="background:transparent;border:none;">
+          <div class="stat-label">Training samples</div>
+          <div class="stat-value">40k+</div>
+          <div class="stat-sub">Toddler nutritional dataset</div>
+        </div>
+        <div class="stat-card" style="background:transparent;border:none;">
+          <div class="stat-label">WHO indicators</div>
+          <div class="stat-value">5</div>
+          <div class="stat-sub">WAZ · HAZ · WHZ · BAZ · HCZ</div>
+        </div>
+        <div class="stat-card" style="background:transparent;border:none;">
+          <div class="stat-label">Assessment steps</div>
+          <div class="stat-value">6</div>
+          <div class="stat-sub">Child → measurements → plan</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="section-sm" style="padding-bottom:64px;">
+    <div class="alert warning">
+      <span>⚠</span>
+      <div><strong>Screening tool only.</strong> ChildNutri AI supports clinical decision-making but does not diagnose illness and does not replace a doctor, nurse, or Anganwadi worker. Always verify OCR-extracted values before use.</div>
+    </div>
+  </section>
+</div>
+
+<script>
+// Particle field in hero card
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+  resize();
+  const particles=[];
+  for(let i=0;i<55;i++) particles.push({x:Math.random(),y:Math.random(),r:Math.random()*1.6+0.4,vx:(Math.random()-.5)*0.0003,vy:(Math.random()-.5)*0.0003,a:Math.random()*0.6+0.2});
+  function frame(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.x=(p.x+p.vx+1)%1;p.y=(p.y+p.vy+1)%1;
+      ctx.beginPath();ctx.arc(p.x*canvas.width,p.y*canvas.height,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(52,211,153,'+p.a+')';ctx.fill();
+    });
+    // Lines
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const dx=(particles[i].x-particles[j].x)*canvas.width;
+        const dy=(particles[i].y-particles[j].y)*canvas.height;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<80){
+          ctx.beginPath();
+          ctx.strokeStyle='rgba(52,211,153,'+(0.12*(1-d/80))+')';
+          ctx.lineWidth=0.5;
+          ctx.moveTo(particles[i].x*canvas.width,particles[i].y*canvas.height);
+          ctx.lineTo(particles[j].x*canvas.width,particles[j].y*canvas.height);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+  window.addEventListener('resize',resize);
+})();
+</script>
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/hi.js"></script>
+<script src="/js/lang.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const user = await getUser();
+    if (user) {
+      const navLinks = document.querySelector('.nav-links');
+      if (navLinks) {
+        navLinks.innerHTML = `
+          <a href="/dashboard.html" data-i18n="dashboard">Dashboard</a>
+          <a href="/assess.html" class="btn primary" data-i18n="new_assessment">＋ New assessment</a>
+          <a href="/photo-scan.html" data-i18n="photo_ai">Photo AI</a>
+          <a href="/ocr.html" data-i18n="ocr_scan">OCR scan</a>
+          <a href="/resources.html" data-i18n="resources">Resources</a>
+          <button id="lang-toggle" onclick="toggleLanguage()" style="background:transparent;border:1.5px solid #00d4aa;color:#00d4aa;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;font-weight:600;margin-left:12px;transition:all 0.2s;" onmouseover="this.style.background='#00d4aa';this.style.color='#0d2818';" onmouseout="this.style.background='transparent';this.style.color='#00d4aa';">हिंदी</button>
+          <button id="logout-btn" data-i18n="log_out">Log out</button>
+        `;
+        if (typeof applyTranslations === 'function') applyTranslations(currentLang);
+      }
+    }
+  } catch(e) {}
+});
+</script>
+</body>
+</html>

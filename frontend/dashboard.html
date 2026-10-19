@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard · ChildNutri AI</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body data-page="dashboard">
+<nav class="nav">
+  <a class="brand" href="/dashboard.html"><span class="brand-mark">CN</span> ChildNutri AI</a>
+  <div class="nav-links">
+    <a href="/assess.html" class="btn primary" data-i18n="new_assessment">＋ New assessment</a>
+    <a href="/photo-scan.html" data-i18n="photo_ai">Photo AI</a>
+    <a href="/ocr.html" data-i18n="ocr_scan">OCR scan</a>
+    <a href="/resources.html" data-i18n="resources">Resources</a>
+    <button id="lang-toggle" onclick="toggleLanguage()" style="background:transparent;border:1.5px solid #00d4aa;color:#00d4aa;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;font-weight:600;margin-left:12px;transition:all 0.2s;" onmouseover="this.style.background='#00d4aa';this.style.color='#0d2818';" onmouseout="this.style.background='transparent';this.style.color='#00d4aa';">हिंदी</button>
+    <button id="logout-btn" data-i18n="log_out">Log out</button>
+  </div>
+</nav>
+
+<div class="app-shell">
+  <!-- WELCOME BAND -->
+  <section class="section-sm">
+    <div class="glass panel glass-glow fade-up" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+      <div>
+        <p class="muted" style="font-size:13px;margin-bottom:4px;">Good day</p>
+        <h1 style="font-size:clamp(22px,3vw,32px);" id="welcome-name">Loading…</h1>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn primary" href="/assess.html" data-i18n="new_screening">Start screening</a>
+        <a class="btn" href="/photo-scan.html">📸 Photo AI</a>
+        <a class="btn" href="/resources.html" data-i18n="resources">Resources</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI STATS -->
+  <div class="stats-row fade-up-1" id="kpi-row">
+    <div class="stat-card"><div class="stat-label">Children</div><div class="stat-value" id="kpi-children">—</div><div class="stat-sub">registered profiles</div></div>
+    <div class="stat-card"><div class="stat-label">Assessments</div><div class="stat-value" id="kpi-assessments">—</div><div class="stat-sub">total screenings</div></div>
+    <div class="stat-card"><div class="stat-label">At risk</div><div class="stat-value amber" id="kpi-risk">—</div><div class="stat-sub">WATCH + HIGH tier</div></div>
+    <div class="stat-card"><div class="stat-label">Model</div><div class="stat-value green">0.87</div><div class="stat-sub">ROC-AUC LightGBM</div></div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <section class="section">
+    <div class="grid-2" style="align-items:start;">
+
+      <!-- Add child form -->
+      <div class="glass panel form fade-up-1" id="child-form-wrap">
+        <h2>Add child profile</h2>
+        <p class="muted" style="font-size:13px;margin-bottom:8px;">Add a child first, then start a 6-step screening.</p>
+        <form id="child-form" class="form">
+          <label>Full name<input id="cf-name" name="name" placeholder="e.g. Arjun Kumar" required></label>
+          <div class="two">
+            <label>Date of birth<input id="cf-dob" name="date_of_birth" type="date" required></label>
+            <label>Sex<select id="cf-sex" name="sex"><option>Male</option><option>Female</option></select></label>
+          </div>
+          <div class="two">
+            <label>Birth weight (kg)<input id="cf-bw" name="birth_weight_kg" type="number" step="0.01" min="0.5" max="8" placeholder="3.2"></label>
+            <label>Birth length (cm)<input id="cf-bl" name="birth_length_cm" type="number" step="0.1" min="30" max="65" placeholder="50.5"></label>
+          </div>
+          <div class="two">
+            <label>State / region<input id="cf-state" name="state_region" placeholder="Maharashtra"></label>
+            <label>Area<select id="cf-area" name="area_type"><option>Urban</option><option>Rural</option></select></label>
+          </div>
+          <button class="primary" type="submit" id="child-btn">Save profile</button>
+          <p class="message" id="child-msg"></p>
+        </form>
+      </div>
+
+      <!-- Children list -->
+      <div class="glass panel fade-up-2">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+          <h2>Registered children</h2>
+          <span class="badge info" id="children-count">—</span>
+        </div>
+        <div id="children-list">
+          <div class="empty-state">
+            <span class="empty-icon">👶</span>
+            <h3>No children yet</h3>
+            <p>Add the first profile to begin screening.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/hi.js"></script>
+<script src="/js/lang.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

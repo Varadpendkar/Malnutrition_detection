@@ -1,0 +1,101 @@
+# ==============================================================================
+# ChildNutri AI — Git Ignore Configuration
+# ==============================================================================
+
+# --- Python & Bytecode ---
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Virtual Environments ---
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Environment Variables & Secrets ---
+.env
+*.env
+*.env.local
+*.env.*.local
+
+# --- Operating System & macOS Artifacts (Crucial for FAT/exFAT/External Drives) ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# --- IDE & Editor Settings ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# --- Automated Testing & Coverage ---
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# --- Temporary Logs & Debug Output ---
+*.log
+logs/
+
+# --- Uploads Directory (Keep folder via .gitkeep, ignore uploaded temp files) ---
+uploads/*
+!uploads/.gitkeep
+
+# --- Datasets (Raw heavy tabular surveys - keep folder structure via .gitkeep) ---
+datasets/*.xlsx
+datasets/*.csv
+!datasets/.gitkeep
+
+# --- Machine Learning Models ---
+# Explicitly whitelist pre-trained production model weights so repo works out-of-the-box
+backend/ml_artifacts/*.tmp
+backend/ml_artifacts/*.log
+!backend/ml_artifacts/risk_model.joblib
+!backend/ml_artifacts/vision_classifier.onnx
+
+# --- Explicit Whitelist: Project Presentations, Docs, Setup & Guides ---
+!childnutri_presentation.pptx
+!PRESENTATION_SLIDES.md
+!FEATURES_EXPLAINED.md
+!ChildNutri_AI_Features_and_Architecture_Guide.pdf
+!SETUP_GUIDE.md
+!README.md
+!requirements.txt
+!setup.sh
+!setup.bat
+!run.sh
+!run.bat
+!childnutri.db
