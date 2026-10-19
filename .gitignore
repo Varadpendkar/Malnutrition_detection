@@ -87,8 +87,6 @@ backend/ml_artifacts/*.log
 !backend/ml_artifacts/vision_classifier.onnx
 
 # --- Explicit Whitelist: Project Presentations, Docs, Setup & Guides ---
-!childnutri_presentation.pptx
-!PRESENTATION_SLIDES.md
 !FEATURES_EXPLAINED.md
 !ChildNutri_AI_Features_and_Architecture_Guide.pdf
 !SETUP_GUIDE.md

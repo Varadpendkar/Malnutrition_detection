@@ -139,8 +139,6 @@ childnutri/
 ├── scripts/                              # Utility & build scripts
 │   └── generate_presentation.py          # Script to regenerate python-pptx presentation deck
 ├── uploads/                              # Temporary secure storage for user uploads (.gitkeep)
-├── childnutri_presentation.pptx          # 14-slide academic capstone presentation deck
-├── PRESENTATION_SLIDES.md                # Slide-by-slide presentation transcript & viva notes
 ├── FEATURES_EXPLAINED.md                 # 66 KB exhaustive clinical & technical concepts manual
 ├── ChildNutri_AI_Features_and_Architecture_Guide.pdf # Architecture overview document
 ├── SETUP_GUIDE.md                        # Multi-platform operating system setup manual
@@ -163,8 +161,6 @@ This repository contains complete, ready-to-use academic defense and project doc
 
 | Deliverable | Format | Description |
 | :--- | :--- | :--- |
-| **Academic Presentation Deck** | [`childnutri_presentation.pptx`](childnutri_presentation.pptx) | Professional 14-slide PowerPoint presentation with custom dark-clinical aesthetics, architecture diagrams, and result charts. |
-| **Slide-by-Slide Defense Guide** | [`PRESENTATION_SLIDES.md`](PRESENTATION_SLIDES.md) | Markdown transcript containing slide contents, speaker notes, and anticipated defense Q&A. |
 | **Comprehensive Features Guide** | [`FEATURES_EXPLAINED.md`](FEATURES_EXPLAINED.md) | 66 KB deep-dive explaining all medical concepts (WHO LMS, WAZ, HAZ, SAM, MAM, TreeSHAP, OpenCV OCR, ONNX vision) in plain language. |
 | **Architecture Overview PDF** | [`ChildNutri_AI_Features_and_Architecture_Guide.pdf`](ChildNutri_AI_Features_and_Architecture_Guide.pdf) | Formatted PDF document summarizing system pipelines and technical benchmarks. |
 | **Multi-OS Setup Manual** | [`SETUP_GUIDE.md`](SETUP_GUIDE.md) | Universal step-by-step setup guide for Windows, macOS, and Linux. |
