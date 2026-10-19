@@ -349,8 +349,6 @@ pytest backend/tests/ -v -s
 
 ## 👨‍💻 Team & Academic Acknowledgements
 
-Developed as a Final-Year B.Tech Capstone Project in Computer Science & Engineering (Artificial Intelligence & Machine Learning) under the mentorship of departmental faculty.
-
 * **GitHub Repository:** [https://github.com/Varadpendkar/Malnutrition_detection](https://github.com/Varadpendkar/Malnutrition_detection)
 * **Standards Reference:** [WHO Child Growth Standards (2006)](https://www.who.int/tools/child-growth-standards)
 * **National Schemes:** [POSHAN Abhiyaan / National Nutrition Mission](https://poshanabhiyaan.gov.in/)
