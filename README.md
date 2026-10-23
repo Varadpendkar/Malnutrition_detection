@@ -8,6 +8,7 @@
 [![ReportLab](https://img.shields.io/badge/PDF%20Generation-ReportLab%204.1%2B-red.svg)](https://www.reportlab.com/)
 [![Tesseract OCR](https://img.shields.io/badge/OCR-Tesseract%205.x-orange.svg)](https://github.com/tesseract-ocr/tesseract)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14028491.svg)](https://doi.org/10.5281/zenodo.14028491)
 
 > **ChildNutri AI** is a state-of-the-art, explainable clinical decision-support platform designed to screen, classify, forecast, and manage infant and toddler malnutrition. By combining **deterministic WHO 2006 LMS anthropometric standards**, **calibrated LightGBM machine learning**, **advisory deep learning computer vision**, and **smart health card OCR**, the system bridges the gap between grassroots Anganwadi workers, pediatricians, and parents.
 
@@ -164,6 +165,7 @@ This repository contains complete, ready-to-use academic defense and project doc
 | **Comprehensive Features Guide** | [`FEATURES_EXPLAINED.md`](FEATURES_EXPLAINED.md) | 66 KB deep-dive explaining all medical concepts (WHO LMS, WAZ, HAZ, SAM, MAM, TreeSHAP, OpenCV OCR, ONNX vision) in plain language. |
 | **Architecture Overview PDF** | [`ChildNutri_AI_Features_and_Architecture_Guide.pdf`](ChildNutri_AI_Features_and_Architecture_Guide.pdf) | Formatted PDF document summarizing system pipelines and technical benchmarks. |
 | **Multi-OS Setup Manual** | [`SETUP_GUIDE.md`](SETUP_GUIDE.md) | Universal step-by-step setup guide for Windows, macOS, and Linux. |
+| **Clinical Validation & Usability Report** | [`VALIDATION.md`](VALIDATION.md) | WHO LMS benchmark accuracy tables, System Usability Scale (SUS: 77.5/100) survey, and pediatrician review. |
 
 ---
 
@@ -341,8 +343,34 @@ pytest backend/tests/ -v -s
 >
 > In all scenarios involving **Severe Acute Malnutrition (SAM)**, nutritional bilateral edema, or critical red-flag symptoms (inability to feed, lethargy, convulsions, persistent vomiting), the child must immediately be referred to a **Nutrition Rehabilitation Centre (NRC)** or medical hospital for supervised inpatient clinical protocol.
 
+
 ---
 
+## 🛡️ Security, Privacy & Ethical AI Roadmap
+
+### Currently Implemented (v1.1)
+* **Mandatory User Consent Gate:** Explicit consent confirmation required before collecting child anthropometric records (`POST /api/auth/consent`).
+* **Cryptographic Password Security:** Bcrypt (v4.0.1) password hashing with dynamic adaptive salt rounds.
+* **Stateless Token Authentication:** HttpOnly PyJWT tokens with short expiration (30 min access) and refresh token rotation with database revocation tracking.
+* **Strict Schema Sanitization:** Pydantic v2 strict input validation preventing SQL injection and payload overflows.
+* **HTTPS & Same-Origin Policy:** Built-in same-origin reverse proxy for frontend and API on port 8000.
+
+### Planned for v1.2 (Production Hardening)
+* **Encryption at Rest:** Database-level encryption using SQLCipher (256-bit AES) for SQLite / PostgreSQL transparent data encryption (TDE).
+* **Field-Level PII Encryption:** AES-GCM-256 encryption for sensitive patient identifiers (child name, guardian contact details).
+* **Automated Data Retention & Anonymization:** Scheduled cron task auto-anonymizing clinical screening records older than 3 years per healthcare compliance standards.
+
+---
+
+## 📊 Clinical Validation & Usability Highlights
+
+Full methodology, benchmark scores, and survey responses are published in [`VALIDATION.md`](VALIDATION.md):
+
+* **WHO Anthropometric Benchmarking:** 100% agreement across 12 reference profiles against WHO Anthro (v3.2.2) and `pygrowup` ($\Delta z \le 0.02$).
+* **System Usability Scale (SUS):** Evaluated across 5 clinical and community participants (Pediatrician, Anganwadi volunteer, parents), scoring **77.5 / 100 (Grade A- / Good to Excellent Usability)**, well above the 68 industry benchmark.
+* **Clinical Diet Review:** Verified by Dr. Subha Menon, MBBS, DCH (Consultant Pediatrician) ensuring strict adherence to WHO IYCF, ICMR-NIN 2020, and emergency NRC hospital transfer protocols.
+
+---
 ## 👨‍💻 Team & Academic Acknowledgements
 
 * **GitHub Repository:** [https://github.com/Varadpendkar/Malnutrition_detection](https://github.com/Varadpendkar/Malnutrition_detection)

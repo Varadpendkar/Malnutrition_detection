@@ -20,6 +20,8 @@ class User(Base):
     role = Column(String(20), nullable=False, default="parent")  # parent | health_worker | admin
     is_active = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    consent_given = Column(Boolean, default=False, nullable=False)
+    consent_date = Column(DateTime, nullable=True)
 
     children = relationship("Child", back_populates="parent", cascade="all, delete-orphan")
     refresh_tokens = relationship("RefreshToken", back_populates="user", cascade="all, delete-orphan")

@@ -248,6 +248,8 @@ def seed_demo_accounts() -> None:
                 phone="+91 98765 11223",
                 password_hash=hash_password("Doctor@123"),
                 role="health_worker",
+                consent_given=True,
+                consent_date=datetime.datetime.utcnow(),
             )
             db.add(doc)
             db.commit()
@@ -262,6 +264,8 @@ def seed_demo_accounts() -> None:
                 phone="+91 98765 43210",
                 password_hash=hash_password("Parent@123"),
                 role="parent",
+                consent_given=True,
+                consent_date=datetime.datetime.utcnow(),
             )
             db.add(parent)
             db.commit()

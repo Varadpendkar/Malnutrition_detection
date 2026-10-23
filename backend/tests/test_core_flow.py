@@ -72,6 +72,23 @@ def test_auth_child_assessment_and_history_flow():
     assert child_res.status_code == 201, child_res.text
     child_id = child_res.json()["id"]
 
+    # Verify Task 6: assessment is blocked without consent
+    no_consent_res = client.post(
+        "/api/assessments",
+        json={
+            "child_id": child_id,
+            "measurement_date": "2026-10-01",
+            "measurement": {"weight_kg": 9.8, "height_cm": 83.0, "bilateral_edema": False},
+        },
+    )
+    assert no_consent_res.status_code == 403
+    assert "consent" in no_consent_res.text.lower()
+
+    # Record consent
+    consent_res = client.post("/api/auth/consent", json={"consent_agreed": True})
+    assert consent_res.status_code == 200
+    assert consent_res.json()["consent_given"] is True
+
     assessment_res = client.post(
         "/api/assessments",
         json={

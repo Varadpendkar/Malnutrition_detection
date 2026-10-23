@@ -20,6 +20,11 @@ router = APIRouter(prefix="/api/assessments", tags=["assessments"])
 @router.post("", response_model=AssessmentOut, status_code=201)
 def create_assessment(body: AssessmentCreate, db: Session = Depends(get_db),
                       user: User = Depends(get_current_user)):
+    if not getattr(user, "consent_given", True):
+        raise HTTPException(
+            status_code=403,
+            detail="User consent for child health data collection is required before conducting an assessment."
+        )
     child = _get_owned(body.child_id, user, db)
 
     # Build growth history from prior assessments for trend analysis

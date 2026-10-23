@@ -280,3 +280,65 @@ tr:hover td{background:rgba(255,255,255,0.03);}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}
 }
+
+/* ─── Consent Modal (Data Protection & Ethical AI Gate) ─── */
+.consent-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 29, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+.consent-card {
+  max-width: 520px;
+  width: 100%;
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  color: #f1f5f9;
+}
+.consent-card h2 {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #38bdf8;
+}
+.consent-card p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+.consent-card .consent-checkbox-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin: 16px 0 20px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+}
+.consent-card .consent-checkbox-wrap input[type="checkbox"] {
+  margin-top: 3px;
+  cursor: pointer;
+}
+.consent-card button {
+  width: 100%;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 10px;
+}

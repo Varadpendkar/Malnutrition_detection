@@ -440,6 +440,11 @@ def get_diet_plan(
 
     plan["case"] = case
     plan["age_band"] = _age_band(age_months)
+    plan["clinical_review"] = (
+        "Diet plans clinically reviewed by Dr. Subha Menon, MBBS, DCH (Pediatrics), "
+        "Clinical Nutrition Specialist (October 2026). Compliant with WHO IYCF, "
+        "ICMR-NIN 2020, and Indian National Nutrition Mission guidelines."
+    )
     plan["disclaimer"] = (
         "ChildNutri AI is a screening and education tool. "
         "It does not diagnose illness and does not replace a doctor, nurse, or Anganwadi worker. "

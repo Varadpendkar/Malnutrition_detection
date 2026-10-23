@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from backend.app.database import get_db
 from backend.app.models import User, RefreshToken
-from backend.app.schemas import SignupRequest, LoginRequest, UserOut
+from backend.app.schemas import SignupRequest, LoginRequest, UserOut, ConsentRequest
 from backend.app.security import hash_password, verify_password, create_access_token, create_refresh_token, decode_token
 from backend.app.deps import get_current_user
 
@@ -103,6 +103,23 @@ def delete_me(
     db.commit()
     response.delete_cookie("access_token")
     response.delete_cookie("refresh_token")
+
+
+
+@router.post("/consent", response_model=UserOut)
+def record_consent(
+    body: ConsentRequest,
+    db: Session = Depends(get_db),
+    user: User = Depends(get_current_user),
+):
+    """Record user consent for child data collection and malnutrition screening."""
+    if not body.consent_agreed:
+        raise HTTPException(status_code=400, detail="Consent must be accepted to use screening features")
+    user.consent_given = True
+    user.consent_date = datetime.utcnow()
+    db.commit()
+    db.refresh(user)
+    return user
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────

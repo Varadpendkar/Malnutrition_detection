@@ -45,10 +45,16 @@ class UserOut(BaseModel):
     full_name: str
     role: str
     created_at: datetime
+    consent_given: bool = False
+    consent_date: Optional[datetime] = None
     access_token: Optional[str] = None
     token_type: Optional[str] = "bearer"
 
     model_config = {"from_attributes": True}
+
+
+class ConsentRequest(BaseModel):
+    consent_agreed: bool = True
 
 
 # ── Child ─────────────────────────────────────────────────────────────────────
